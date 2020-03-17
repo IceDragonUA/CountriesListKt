@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_left"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/native_"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/emoji"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/native_" />
+
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emoji"/>
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currency"/>
+
+    <TextView
+        android:id="@+id/continent"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone"/>
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="@dimen/description_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
