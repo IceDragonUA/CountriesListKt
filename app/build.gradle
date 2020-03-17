@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.apollographql.apollo'
+apply plugin: 'kotlin-kapt'
 
 repositories {
     jcenter()
@@ -57,10 +58,12 @@ dependencies {
 
     // ButterKnife
     implementation dep.butterknife
+    kapt dep.butterknifeCompiler
     annotationProcessor dep.butterknifeCompiler
 
     // Dagger
     implementation dep.dagger
+    kapt dep.daggerCompiler
     annotationProcessor dep.daggerCompiler
 
     // RxAndroid
