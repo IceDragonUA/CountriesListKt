@@ -18,9 +18,8 @@ import com.evaluation.adapter.CustomListAdapter
 import com.evaluation.command.ICommand
 import com.evaluation.countrylist.CountryQuery
 import com.evaluation.countrylist.CountryQuery.Country
-import com.evaluation.countrylist.MainActivity
 import com.evaluation.countrylist.R
-import com.evaluation.dagger.data.DataComponent.Injector.component
+import com.evaluation.dagger.data.DataComponent
 import com.evaluation.network.RestAdapter
 import com.evaluation.viewmodel.PageViewModel
 import javax.inject.Inject
@@ -33,9 +32,7 @@ class MainFragment : Fragment() {
 
     private val TAG = MainFragment::class.java.canonicalName
 
-    lateinit var mPageViewModel: PageViewModel
-
-    lateinit var mActivity: MainActivity
+    private lateinit var mPageViewModel: PageViewModel
 
     private var mRootView: View? = null
 
@@ -47,7 +44,7 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component.inject(this)
+        DataComponent.Injector.component.inject(this)
         mPageViewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
     }
 
@@ -62,28 +59,23 @@ class MainFragment : Fragment() {
         return mRootView
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        mActivity = activity as MainActivity
-    }
-
     private fun loadList() {
-        mRestAdapter.restApiService.query(
-                CountryQuery.builder().build()
-            )
+        mRestAdapter.restApiService.query(CountryQuery.builder().build())
             .enqueue(object : ApolloCall.Callback<CountryQuery.Data>() {
                 override fun onResponse(response: Response<CountryQuery.Data>) {
-                    mActivity.runOnUiThread {
-                        val adapter = CustomListAdapter(
-                            response.data()!!.countries()!!,
-                            object : ICommand<Country> {
-                                override fun execute(param: Country) {
-                                    mPageViewModel.setResult(param)
+                    activity?.runOnUiThread {
+                        val adapter = response.data()?.countries()?.let {
+                            CustomListAdapter(
+                                it,
+                                object : ICommand<Country> {
+                                    override fun execute(param: Country) {
+                                        mPageViewModel.setResult(param)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                         mCountriesList.adapter = adapter
-                        mPageViewModel.setResult(response.data()!!.countries()!![0])
+                        response.data()?.countries()?.get(0)?.let { mPageViewModel.setResult(it) }
                     }
                 }
 

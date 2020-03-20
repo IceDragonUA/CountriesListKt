@@ -5,8 +5,6 @@ package com.evaluation.utils
  * @since 16.03.2020
  */
 object StringUtils {
-    const val EMPTY_STRING = ""
-    const val DOT_STRING = "."
     const val COMMA_STRING = ","
     const val BLANK_STRING = " "
 }

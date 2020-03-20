@@ -54,6 +54,7 @@ dependencies {
     // Glide
     implementation dep.glide
     implementation dep.glideAnnotations
+    kapt dep.glideCompiler
     annotationProcessor dep.glideCompiler
 
     // ButterKnife
@@ -71,10 +72,7 @@ dependencies {
     implementation dep.rxJava
 
     // Retrofit
-    implementation dep.retrofit
-    implementation dep.retrofitConvGson
     implementation dep.okhttpLogging
-    implementation dep.retrofitAdaptRx
 
     // Stetho
     implementation dep.facebookStetho

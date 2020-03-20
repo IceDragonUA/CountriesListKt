@@ -23,7 +23,7 @@ class DetailFragment : Fragment() {
 
     val TAG = DetailFragment::class.java.canonicalName
 
-    lateinit var mPageViewModel: PageViewModel
+    private lateinit var mPageViewModel: PageViewModel
 
     private var mRootView: View? = null
 
@@ -65,7 +65,7 @@ class DetailFragment : Fragment() {
 
     private fun loadInfo() {
         mPageViewModel.result.observe(requireActivity(),
-            Observer { result: Country ->
+            Observer { result ->
                 mNameView.text = result.name()
                 mNativeView.text = result.native_()
                 mEmojiView.text = result.emoji()
@@ -73,13 +73,22 @@ class DetailFragment : Fragment() {
                 mPhoneView.text = result.phone()
                 mContinentView.text = result.continent()?.name()
                 val sb = StringBuilder()
-                for (i in result.languages()!!.indices) {
-                    sb.append(result.languages()!![i].name())
-                    if (i < result.languages()!!.size - 1) {
-                        sb.append(StringUtils.COMMA_STRING)
-                        sb.append(StringUtils.BLANK_STRING)
+                result.languages()?.indices?.let {
+                    for (i in it) {
+                        result.languages()?.let { list ->
+                            sb.append(list[i]?.name())
+                            result.languages()?.size?.let { size ->
+                                if (i < size - 1) {
+                                    sb.append(StringUtils.COMMA_STRING)
+                                    sb.append(StringUtils.BLANK_STRING)
+                                }
+                            }
+
+                        }
+
                     }
                 }
+
                 mLanguageView.text = sb.toString()
             }
         )

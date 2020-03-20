@@ -29,13 +29,13 @@ class CustomListAdapter(private val mCountriesList: List<Country>, private val c
         return mCountriesList.size
     }
 
-    class ListAdapterHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
+    class ListAdapterHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         @BindView(R.id.name)
         lateinit var titleView: TextView
 
         init {
-            ButterKnife.bind(this, view!!)
+            ButterKnife.bind(this, view)
         }
 
         fun bind(userList: Country, clickCommand: ICommand<Country>) {
