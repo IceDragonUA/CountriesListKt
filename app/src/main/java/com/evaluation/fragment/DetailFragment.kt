@@ -71,19 +71,20 @@ class DetailFragment : Fragment() {
                 mEmojiView.text = result.emoji()
                 mCurrencyView.text = result.currency()
                 mPhoneView.text = result.phone()
-                mContinentView.text = result.continent()?.name()
+                mContinentView.text = result.continent()?.name() ?: StringUtils.EMPTY_STRING
                 val sb = StringBuilder()
                 result.languages()?.indices?.let {
                     for (i in it) {
                         result.languages()?.let { list ->
-                            sb.append(list[i]?.name())
-                            result.languages()?.size?.let { size ->
-                                if (i < size - 1) {
-                                    sb.append(StringUtils.COMMA_STRING)
-                                    sb.append(StringUtils.BLANK_STRING)
+                            sb.append(list[i]?.name() ?: StringUtils.EMPTY_STRING)
+                            if (list[i]?.name() != null) {
+                                result.languages()?.size?.let { size ->
+                                    if (i < size - 1) {
+                                        sb.append(StringUtils.COMMA_STRING)
+                                        sb.append(StringUtils.BLANK_STRING)
+                                    }
                                 }
                             }
-
                         }
 
                     }
